@@ -29,9 +29,8 @@ public class ProgrammingBook extends Book{
 
     @Override
     public String toString() {
-        return "\nProgrammingBook{"+ super.toString() +
-                "language='" + language + '\'' +
-                ", framework='" + framework + '\'' +
-                '}';
+        return super.toString() +
+                language + ","
+                + framework;
     }
 }

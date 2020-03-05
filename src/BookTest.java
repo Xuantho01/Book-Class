@@ -1,4 +1,6 @@
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BookTest {
@@ -131,6 +133,7 @@ public class BookTest {
         return programmingBook;
 
     }
+
     public static FictionBook enterInformationOfFictionBook() {
         FictionBook fictionBook = new FictionBook();
 
@@ -149,127 +152,187 @@ public class BookTest {
         return fictionBook;
 
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         setBook();
+        writeFileText("filename.txt",ListBook);
+        readFileFromArrayList("filename.txt");
+//        System.out.println(listBookReadFromFile.toString());
 
-        System.out.println(ListBook.toString());
-
-        System.out.println("Enter this Book that you want to search: ");
-        String book_Search = scanner.nextLine();
-        String searchPrice = searchPriceBook(book_Search);
-
-        double total_Price = totalPrice(ListBook);
-        int total_javaBook = coutJavaBook(ListBook);
-
-        System.out.println(searchPrice);
-        System.out.println("Total price of List Book: " + total_Price);
-
-        System.out.println("Total java Book: " + total_javaBook);
-
-        System.out.println("\nBubble sort: ");
-        System.out.println("\n" + bubbleSort(ListBook));
-
-        System.out.println("\nSelection sort: ");
-        System.out.println("\n" + selectionSort(ListBook));
-
-        System.out.println("\ninsertion Sort: ");
-        System.out.println("\n" + insertionSort(ListBook));
-
-        System.out.println(binarySearch(insertionSort(ListBook), "fiction Book 3"));
+//        System.out.println(ListBook.toString());
+//
+//        System.out.println("Enter this Book that you want to search: ");
+//        String book_Search = scanner.nextLine();
+//        String searchPrice = searchPriceBook(book_Search);
+//
+//        double total_Price = totalPrice(ListBook);
+//        int total_javaBook = coutJavaBook(ListBook);
+//
+//        System.out.println(searchPrice);
+//        System.out.println("Total price of List Book: " + total_Price);
+//
+//        System.out.println("Total java Book: " + total_javaBook);
+//
+//        System.out.println("\nBubble sort: ");
+//        System.out.println("\n" + bubbleSort(ListBook));
+//
+//        System.out.println("\nSelection sort: ");
+//        System.out.println("\n" + selectionSort(ListBook));
+//
+//        System.out.println("\ninsertion Sort: ");
+//        System.out.println("\n" + insertionSort(ListBook));
+//
+//        System.out.println(binarySearch(insertionSort(ListBook), "fiction Book 3"));
     }
 
-    public static String searchPriceBook(String nameOfBook) {
-        for (Book list : ListBook) {
-            if (nameOfBook.equals(list.getName())) {
-                return "price of " + nameOfBook + " is :" + list.getPrice();
-            }
-        }
-        return "Not found";
-    }
+//    public static String searchPriceBook(String nameOfBook) {
+//        for (Book list : ListBook) {
+//            if (nameOfBook.equals(list.getName())) {
+//                return "price of " + nameOfBook + " is :" + list.getPrice();
+//            }
+//        }
+//        return "Not found";
+//    }
+//
+//    public static double totalPrice(ArrayList<Book> listBook) {
+//        double price = 0;
+//        for (Book lists : listBook) {
+//            price += lists.getPrice();
+//        }
+//        return price;
+//    }
+//
+//    public static int coutJavaBook(ArrayList<Book> listBook) {
+//        int totalJavaBook = 0;
+//        for (Book list_java_book : listBook) {
+//            boolean isProgrammingBook = list_java_book instanceof ProgrammingBook;
+//            if (isProgrammingBook) {
+//                boolean isJavaBook = ((ProgrammingBook) list_java_book).getLanguage().equals("Java");
+//                if (isJavaBook) {
+//                    totalJavaBook++;
+//                }
+//            }
+//        }
+//        return totalJavaBook;
+//    }
+//
+//    public static ArrayList<Book> bubbleSort(ArrayList<Book> listBook) {
+//        for (int i = 1; i < listBook.size(); i++) {
+//            for (int j = 0; j < listBook.size() - i; j++) {
+//                if (listBook.get(j).getPrice() > listBook.get(j + 1).getPrice()) {
+//                    Book temp = listBook.get(j);
+//                    listBook.set(j, listBook.get(j + 1));
+//                    listBook.set(j + 1, temp);
+//                }
+//            }
+//        }
+//        return listBook;
+//    }
+//
+//    public static ArrayList<Book> selectionSort(ArrayList<Book> listBook) {
+//        for (int i = 0; i < listBook.size(); i++) {
+//            Book minPriceOfBook = listBook.get(i);
+//            int currentIndex = listBook.indexOf(listBook.get(i));
+//            for (int j = i + 1; j < listBook.size(); j++) {
+//                if (minPriceOfBook.getPrice() > listBook.get(j).getPrice()) {
+//
+//                    minPriceOfBook = listBook.get(j);
+//                    currentIndex = listBook.indexOf(listBook.get(j));
+//                }
+//            }
+//            if (currentIndex != i) {
+//                listBook.set(currentIndex, listBook.get(i));
+//                listBook.set(i, minPriceOfBook);
+//            }
+//        }
+//        return listBook;
+//    }
+//
+//    public static ArrayList<Book> insertionSort(ArrayList<Book> listBook) {
+//        for (int i = 1; i < listBook.size(); i++) {
+//            Book currentBook = listBook.get(i);
+//            int j = i - 1;
+//            while ((j >= 0) && listBook.get(j).getPrice() > currentBook.getPrice()) {
+//                listBook.set(j + 1, listBook.get(j));
+//                j--;
+//            }
+//            listBook.set(j + 1, currentBook);
+//        }
+//        return listBook;
+//    }
+//
+//    public static double binarySearch(ArrayList<Book> listBook, String name) {
+//        int low = 0;
+//        int hight = listBook.size() - 1;
+//        while (low <= hight) {
+//            int mid = low + (hight - 1) / 2;
+//            int result = name.compareTo(listBook.get(mid).getName());
+//            if (result == 0) {
+//                return listBook.get(mid).getPrice();
+//            }
+//            if (result > 0) {
+//                low = mid + 1;
+//            } else
+//                hight = mid - 1;
+//        }
+//        return -1;
+//    }
 
-    public static double totalPrice(ArrayList<Book> listBook) {
-        double price = 0;
-        for (Book lists : listBook) {
-            price += lists.getPrice();
-        }
-        return price;
-    }
-
-    public static int coutJavaBook(ArrayList<Book> listBook) {
-        int totalJavaBook = 0;
-        for (Book list_java_book : listBook) {
-            boolean isProgrammingBook = list_java_book instanceof ProgrammingBook;
-            if (isProgrammingBook) {
-                boolean isJavaBook = ((ProgrammingBook) list_java_book).getLanguage().equals("Java");
-                if (isJavaBook) {
-                    totalJavaBook++;
+    public static void writeFileText(String filePath, List<Book> bookList) {
+        try {
+            FileWriter myWriter = new FileWriter(filePath,true);
+            BufferedWriter out = new BufferedWriter(myWriter);
+            for(int i = 0 ; i < bookList.size() ; i++){
+                if (bookList.get(i) instanceof ProgrammingBook){
+                    out.write("Programming Book," + bookList.get(i));
+                }else if (bookList.get(i) instanceof FictionBook){
+                    out.write("\nFiction Book,"+ bookList.get(i)+ "\n");
                 }
             }
+            out.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
-        return totalJavaBook;
     }
+    //static ArrayList<String[]> listBookReadFromFile = new ArrayList<>();
+    public static void readFileFromArrayList(String filePath) throws Exception {
+        File file = new File(filePath);
+        String cutTo = ",";
+        try {
+            if (!file.exists()) {
+                throw new FileNotFoundException();
+            }
+            String line = "";
 
-    public static ArrayList<Book> bubbleSort(ArrayList<Book> listBook) {
-        for (int i = 1; i < listBook.size(); i++) {
-            for (int j = 0; j < listBook.size() - i; j++) {
-                if (listBook.get(j).getPrice() > listBook.get(j + 1).getPrice()) {
-                    Book temp = listBook.get(j);
-                    listBook.set(j, listBook.get(j + 1));
-                    listBook.set(j + 1, temp);
+            BufferedReader input = new BufferedReader(new FileReader(file));
+            while ((line = input.readLine()) != null) {
+                //System.out.println(line);
+                String[] listBook = line.split(cutTo);
+                if(listBook[0].equals("Programming Book")) {
+                    System.out.println("Programming Book: [ book code = "
+                            + listBook[1] + ", Name: "
+                            + listBook[2] + ", Price: "
+                            + listBook[3]+ ", author: "
+                            + listBook[4] + ", Language: "
+                            + listBook[5] + ", Framework: "
+                            + listBook[6] + "]");
+                    //listBookReadFromFile.add(listBook);
+                }else if (listBook[0].equals("Fiction Book")){
+                    System.out.println("Fiction Book: [ book code = "
+                            + listBook[1] + ", Name: "
+                            + listBook[2] + ", Price: "
+                            + listBook[3]+ ", author: "
+                            + listBook[4] + ", category: "
+                            + listBook[5]+ "]");
                 }
+                //          listBookReadFromFile.add(listBook);
             }
+            input.close();
+        } catch (IOException e) {
+            System.out.println(e);
         }
-        return listBook;
-    }
-
-    public static ArrayList<Book> selectionSort(ArrayList<Book> listBook) {
-        for (int i = 0; i < listBook.size(); i++) {
-            Book minPriceOfBook = listBook.get(i);
-            int currentIndex = listBook.indexOf(listBook.get(i));
-            for (int j = i + 1; j < listBook.size(); j++) {
-                if (minPriceOfBook.getPrice() > listBook.get(j).getPrice()) {
-
-                    minPriceOfBook = listBook.get(j);
-                    currentIndex = listBook.indexOf(listBook.get(j));
-                }
-            }
-            if (currentIndex != i) {
-                listBook.set(currentIndex, listBook.get(i));
-                listBook.set(i, minPriceOfBook);
-            }
-        }
-        return listBook;
-    }
-
-    public static ArrayList<Book> insertionSort(ArrayList<Book> listBook) {
-        for (int i = 1; i < listBook.size(); i++) {
-            Book currentBook = listBook.get(i);
-            int j = i - 1;
-            while ((j >= 0) && listBook.get(j).getPrice() > currentBook.getPrice()) {
-                listBook.set(j + 1, listBook.get(j));
-                j--;
-            }
-            listBook.set(j + 1, currentBook);
-        }
-        return listBook;
-    }
-
-    public static double binarySearch(ArrayList<Book> listBook, String name) {
-        int low = 0;
-        int hight = listBook.size() - 1;
-        while (low <= hight) {
-            int mid = low + (hight - 1) / 2;
-            int result = name.compareTo(listBook.get(mid).getName());
-            if (result == 0) {
-                return listBook.get(mid).getPrice();
-            }
-            if (result > 0) {
-                low = mid + 1;
-            } else
-                hight = mid - 1;
-        }
-        return -1;
     }
 }
 

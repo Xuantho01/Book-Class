@@ -1,0 +1,4 @@
+Programming Book,123,asdfg,1234.0,hdfhdg,wedfgh,dfgh,
+Fiction Book,1234,sdfgh,1234.0,asdf,asdfg,
+Programming Book,12345,asdfgh,12345.0,null,sdvbn,asdfgh
+Fiction Book,1234,asdfg,12345.0,asdfg,sdfgh,

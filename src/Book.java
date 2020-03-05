@@ -48,11 +48,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "\nBook{" +
-                "BookCode=" + BookCode +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", author='" + author + '\'' +
-                '}';
+        return
+                BookCode +","+
+                name + "," +
+                + price + "," +
+                 author + ",";
     }
 }
